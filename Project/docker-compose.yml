@@ -1,0 +1,39 @@
+services:
+  backend:
+    build: ./BE
+    container_name: be-service
+    ports:
+      - "5556:5556"
+    depends_on:
+      mysql:
+        condition: service_healthy  
+    networks:
+      - my-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: project-mysql-1
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 123456
+      MYSQL_DATABASE: cntt3
+      TZ: Asia/Ho_Chi_Minh
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./BE/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - my-network
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -u root -p123456"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  mysql_data:
+
+networks:
+  my-network:
+    driver: bridge

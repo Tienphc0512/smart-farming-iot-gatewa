@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Điều khiển Arduino</title>
+    <meta charset="UTF-8" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        background-color: #f0f0f0;
+        padding-top: 50px;
+      }
+
+      h1 {
+        color: #333;
+      }
+
+      .sensor-box {
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        width: 300px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      }
+
+      .buttons {
+        margin-top: 30px;
+      }
+
+      button {
+        padding: 12px 24px;
+        margin: 10px;
+        font-size: 16px;
+        cursor: pointer;
+        border: none;
+        border-radius: 6px;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        opacity: 0.8;
+      }
+
+      .on { background-color: #4CAF50; color: white; }
+      .off { background-color: #f44336; color: white; }
+      .read { background-color: #2196F3; color: white; }
+      .auto { background-color: #ff9800; color: white; }
+    </style>
+  </head>
+  <body>
+    <h1>Điều khiển máy bơm bằng Arduino</h1>
+
+    <div class="sensor-box">
+      <h3>Dữ liệu cảm biến</h3>
+      <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    fetch("/latest")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("sensorData").innerText = data.sensorData;
+      });
+  });
+</script>
+
+<p><strong id="sensorData">Đang tải dữ liệu...</strong></p>
+
+
+    </div>
+
+    <div class="buttons">
+      <form action="/auto/on"><button>Bật Auto</button></form>
+<form action="/auto/off"><button>Tắt Auto</button></form>
+<form action="/pump"><button>Tưới thủ công</button></form>
+
+    </div>
+  </body>
+</html>
