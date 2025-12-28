@@ -1,4 +1,4 @@
-# 🌱 Smart Farming IoT Gateway  
+<img width="1511" height="365" alt="image" src="https://github.com/user-attachments/assets/d45c73b0-7167-4152-96a8-034853ba1890" /># 🌱 Smart Farming IoT Gateway  
 **Hệ thống tưới cây thông minh IoT – Theo dõi & điều khiển thời gian thực**
 
 ---
@@ -29,7 +29,7 @@ Hệ thống cho phép **tưới cây tự động khi độ ẩm đất vượt
 ---
 
 ## 🏗️ Kiến trúc tổng thể
-
+```
 [ Arduino + Sensor ]
 |
 Serial / Bluetooth
@@ -50,7 +50,7 @@ MQTT
 │ Frontend App │ (React Native - Expo)
 └─────────────────┘
 
-
+```
 ---
 
 ## ⚙️ Chức năng chính
